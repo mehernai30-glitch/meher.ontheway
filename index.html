@@ -455,6 +455,32 @@
                 gap: 10px;
             }
         }
+   
+/* Mobile navbar fix */
+@media (max-width: 800px) {
+    nav {
+        padding: 16px 5%;
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+    }
+
+    .nav-links {
+        gap: 12px;
+        font-size: 10px;
+        white-space: nowrap;
+        max-width: 58vw;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+}
     </style>
 </head>
 
