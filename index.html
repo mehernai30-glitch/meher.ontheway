@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MEHER.ONTHEWAY — Creating the life I've always dreamed of</title>
+
+    <meta name="description" content="MEHER.ONTHEWAY — A personal travel journal by Meher, collecting journeys, stories, places and memories.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 80px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 75% 35%, rgba(255,255,255,0.08), transparent 30%),
+                linear-gradient(135deg, #090909, #111);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .small-title {
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #999;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 11vw, 125px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            color: #888;
+        }
+
+        .tagline {
+            font-size: clamp(20px, 3vw, 30px);
+            color: #ddd;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 15px 26px;
+            border: 1px solid #777;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        section {
+            padding: 110px 8%;
+        }
+
+        .section-label {
+            color: #888;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: clamp(38px, 6vw, 70px);
+            line-height: 1;
+            margin-bottom: 50px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: #0e0e0e;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .about-name {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .nickname {
+            color: #888;
+        }
+
+        .about-text {
+            font-size: 21px;
+            color: #ccc;
+            max-width: 800px;
+        }
+
+        .location {
+            margin-top: 30px;
+            color: #888;
+        }
+
+        /* =========================
+           TRAVEL
+        ========================= */
+
+        .travels {
+            background: #090909;
+        }
+
+        .trip-card {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 500px;
+            border: 1px solid #242424;
+            overflow: hidden;
+            margin-bottom: 70px;
+            background: #101010;
+        }
+
+        .trip-image {
+            min-height: 500px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .trip-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(0,0,0,0.05),
+                rgba(0,0,0,0.5)
+            );
+        }
+
+        .trip-content {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .trip-number {
+            color: #777;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .trip-content h3 {
+            font-size: clamp(40px, 5vw, 65px);
+            margin-bottom: 10px;
+        }
+
+        .trip-date {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .trip-experience {
+            font-size: 19px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .trip-button {
+            display: inline-block;
+            width: fit-content;
+            border-bottom: 1px solid white;
+            padding-bottom: 6px;
+        }
+
+        /* =========================
+           STORY
+        ========================= */
+
+        .story {
+            background: #111;
+        }
+
+        .story-container {
+            max-width: 900px;
+        }
+
+        .story-container p {
+            font-size: 21px;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .quote {
+            font-size: clamp(28px, 4vw, 50px) !important;
+            color: white !important;
+            line-height: 1.2;
+            margin: 50px 0;
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            background: #090909;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #171717;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+
+        /* =========================
+           MAP
+        ========================= */
+
+        .map-section {
+            background: #0e0e0e;
+        }
+
+        .map-box {
+            border: 1px solid #292929;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        .map-box h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .map-box p {
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .map-button {
+            display: inline-block;
+            padding: 13px 22px;
+            border: 1px solid #555;
+            border-radius: 30px;
+        }
+
+        .map-button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            text-align: center;
+            background: #080808;
+            padding-bottom: 120px;
+        }
+
+        .contact h2 {
+            font-size: clamp(45px, 8vw, 100px);
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .email {
+            color: #aaa;
+            font-size: 18px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 8%;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .hero {
+                padding: 120px 5% 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .trip-card {
+                grid-template-columns: 1fr;
+            }
+
+            .trip-image {
+                min-height: 350px;
+            }
+
+            .trip-content {
+                padding: 35px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+        <a href="#home" class="logo">MEHER.ONTHEWAY</a>
+
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#travels">Travels</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                A personal travel journal
+            </div>
+
+            <h1>
+                MEHER<span>.</span><br>
+                ONTHEWAY
+            </h1>
+
+            <p class="tagline">
+                Creating the life I've always dreamed of
+            </p>
+
+            <a href="#travels" class="hero-button">
+                Explore My Journey ↓
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section class="about" id="about">
+
+        <div class="section-label">
+            01 — About Me
+        </div>
+
+        <div class="about-grid">
+
+            <div>
+
+                <h2 class="about-name">
+                    Asmiul Al Mehebub
+                </h2>
+
+                <p class="nickname">
+                    They call me Meher.
+                </p>
+
+                <p class="location">
+                    📍 Karatia, Tangail
+                </p>
+
+            </div>
+
+
+            <div class="about-text">
+
+                <p>
+                    এক সময় আমি মারা যাবো। কিছুই আর থাকবে না।
+                    কিন্তু তার আগে আমি এই পৃথিবীটা দেখতে চাই।
+                </p>
+
+                <p>
+                    শুধু উপর থেকে নয়—
+                    সবকিছুর গভীরতায় গিয়ে,
+                    প্রতিটা জায়গার গল্প অনুভব করে,
+                    নিজের ভেতরের মানুষটাকে খুঁজে পেতে চাই।
+                </p>
+
+                <p>
+                    This is my way of keeping those moments alive.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRAVELS
+         ========================= -->
+
+    <section class="travels" id="travels">
+
+        <div class="section-label">
+            02 — My Travels
+        </div>
+
+        <h2 class="section-title">
+            Places I've been.
+        </h2>
+
+
+        <!-- =========================
+             TRIP 01 — SHITAKUNDO
+             ========================= -->
+
+        <article class="trip-card">
+
+            <div
+                class="trip-image"
+                style="
+                    background-image:
+                    url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85');
+                "
+            ></div>
+
+
+            <div class="trip-content">
+
+                <div class="trip-number">
+                    TRIP 001
+                </div>
+
+                <h3>
+                    Shitakundo
+                </h3>
+
+                <div class="trip-date">
+                    02 July — 05 July 2026
+                </div>
+
+                <p class="trip-experience">
+                    ফার্স্ট মেইল ট্রেনে জার্নি
+                </p>
+
+                <a
+                    href="#story"
+                    class="trip-button"
+                >
+                    Read the story →
+                </a>
+
+            </div>
+
+        </article>
+
+        <!--
+        ==================================================
+        ADD NEW TRIP HERE
+        ==================================================
+
+        Future-এ নতুন trip যোগ করতে চাইলে এই পুরো
+        trip-card section copy করে নিচে paste করবে।
+
+        তারপর:
+
+        1. TRIP NUMBER পরিবর্তন করবে
+        2. জায়গার নাম পরিবর্তন করবে
+        3. Date পরিবর্তন করবে
+        4. Experience পরিবর্তন করবে
+        5. Photo URL পরিবর্তন করবে
+
+        ==================================================
+        -->
+
+    </section>
+
+
+    <!-- =========================
+         TRAVEL STORY
+         ========================= -->
+
+    <section class="story" id="story">
+
+        <div class="section-label">
+            03 — Travel Story
+        </div>
+
+        <div class="story-container">
+
+            <h2 class="section-title">
+                Shitakundo
+            </h2>
+
+            <p>
+                02 July 2026 — যাত্রা শুরু।
+            </p>
+
+            <p>
+                05 July 2026 সন্ধ্যায় আবার বাসায় ফিরে আসা।
+            </p>
+
+            <p>
+                এই trip-এর সবচেয়ে memorable অংশ ছিল
+                ফার্স্ট মেইল ট্রেনে জার্নি।
+            </p>
+
+            <p class="quote">
+                "Every journey takes you somewhere,
+                but some journeys take you closer to yourself."
+            </p>
+
+            <p>
+                This is only the beginning.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+         ========================= -->
+
+    <section class="gallery" id="gallery">
+
+        <div class="section-label">
+            04 — Memories
+        </div>
+
+        <h2 class="section-title">
+            Through my eyes.
+        </h2>
+
+
+        <div class="gallery-grid">
+
+            <!-- Temporary images.
+                 নিজের ছবি upload করার পর
+                 এগুলোর জায়গায় নিজের image link বসাবে. -->
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
+                    alt="Travel memory"
+                >
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
+                    alt="Mountain travel"
+                >
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=85"
+                    alt="Travel landscape"
+                >
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAP
+         ========================= -->
+
+    <section class="map-section">
+
+        <div class="section-label">
+            05 — Where I've Been
+        </div>
+
+        <div class="map-box">
+
+            <h3>
+                Shitakundo, Bangladesh
+            </h3>
+
+            <p>
+                A place from my first journey documented here.
+            </p>
+
+            <a
+                href="https://www.google.com/maps/search/?api=1&query=Sitakunda%2C%20Bangladesh"
+                target="_blank"
+                class="map-button"
+            >
+                Open location in Google Maps →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+         ========================= -->
+
+    <section class="contact" id="contact">
+
+        <div class="section-label">
+            06 — Contact
+        </div>
+
+        <h2>
+            Let's connect.
+        </h2>
+
+        <a
+            href="mailto:mehernai30@gmail.com"
+            class="email"
+        >
+            mehernai30@gmail.com
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer>
+
+        <div>
+            © 2026 MEHER.ONTHEWAY
+        </div>
+
+        <div>
+            Creating the life I've always dreamed of.
+        </div>
+
+    </footer>
+
+
+</body>
+  </html>
